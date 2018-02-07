@@ -7,7 +7,8 @@
     "start": "ts-node src/index.ts",
     "lint": "tslint --project .",
     "lint:fix": "npm run lint -- --fix",
-    "test": "npm run lint"
+    "build": "tsc --noEmit",
+    "test": "npm run lint && npm run build"
   },
   "author": "Erk Struwe <estruwe@estruwe.de>",
   "license": "ISC",
@@ -17,5 +18,8 @@
     "tslint": "^5.9.1",
     "typescript": "^2.7.1",
     "winston": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^9.4.1"
   }
 }
