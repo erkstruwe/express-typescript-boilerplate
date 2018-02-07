@@ -1,0 +1,21 @@
+{
+  "name": "express-typescript-boilerplate",
+  "version": "0.1.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "lint": "tslint --project .",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "npm run lint"
+  },
+  "author": "Erk Struwe <estruwe@estruwe.de>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "ts-node": "^4.1.0",
+    "tslint": "^5.9.1",
+    "typescript": "^2.7.1",
+    "winston": "^2.4.0"
+  }
+}
