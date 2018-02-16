@@ -1,0 +1,14 @@
+version: '3'
+services:
+    web:
+        image: $npm_package_name:$npm_package_version
+        ports:
+            - "3000:3000"
+#        env_file:
+#            - .env
+#        environment:
+#            MONGODB_URI: mongodb://mongo:27017/test
+#        depends_on:
+#            - mongo
+#    mongo:
+#        image: mongo

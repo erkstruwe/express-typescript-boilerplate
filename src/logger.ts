@@ -1,3 +1,3 @@
-import * as winston from "winston";
+import * as winston from "winston"
 
-export const logger = winston;
+export const logger = winston

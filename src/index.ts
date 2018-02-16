@@ -1,14 +1,13 @@
-import * as express from "express";
+import * as dotenv from "dotenv"
 
-import { version } from "../package.json";
-import { config } from "./config";
-import { logger } from "./logger";
+dotenv.config({
+    silent: true,
+})
 
-const app = express();
+import {config} from "./config"
+import {logger} from "./logger"
+import {server} from "./server"
 
-app.get("/health", (req, res) => res.send(""));
-app.get("/version", (req, res) => res.send(packageJson.version));
-
-app.listen(config.port, () => {
-    logger.info(`listening on port ${config.port}`);
-});
+server.listen(config.port, () => {
+    logger.info(`listening on port ${config.port}`)
+})
