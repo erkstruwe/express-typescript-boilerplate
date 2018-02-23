@@ -1,7 +1,7 @@
-import * as express from "express"
-import * as path from "path"
 import * as compression from "compression"
+import * as express from "express"
 import * as helmet from "helmet"
+import * as path from "path"
 
 import {router} from "./router"
 

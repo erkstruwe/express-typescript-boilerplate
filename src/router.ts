@@ -1,7 +1,7 @@
 import * as express from "express"
+import * as st from "st"
 import * as webpack from "webpack"
 import * as webpackDevMiddleware from "webpack-dev-middleware"
-import * as st from "st"
 
 import * as webpackConfigFactory from "../webpack.config"
 import {config} from "./config"
@@ -50,7 +50,7 @@ router.use(st({
     gzip: false, // compression is already applied by compression middleware
     cache: {
         content: {
-            maxAge: 1000 * 60 * 60 * 24 * 10
-        }
-    }
+            maxAge: 1000 * 60 * 60 * 24 * 10,
+        },
+    },
 }))
