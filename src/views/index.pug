@@ -3,7 +3,8 @@ html(lang="en")
     head
         meta(charset="utf-8")
         meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
-        script(src=webpackStatsJson.assetsByChunkName.main, async)
+        script(src="/generated/" + webpackStatsJson.assetsByChunkName.main async)
 
     body
         h1 Hello, world!
+        img(src="/sample.jpg" alt="Sample" style="max-width: 100%")
