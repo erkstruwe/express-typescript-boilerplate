@@ -1,3 +1,5 @@
+require("bootstrap/scss/bootstrap")
+
 interface IConsoleMessage {
     message: string
     data: object
