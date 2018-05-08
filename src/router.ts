@@ -15,8 +15,8 @@ router.get("/name", (req, res) => res.send(config.name))
 router.get("/version", (req, res) => res.send(config.version))
 router.get("/health", (req, res) => res.send(""))
 
-if (config.environment === "development") {
-    const webpackConfig = webpackConfigFactory()
+if (config.mode === "development") {
+    const webpackConfig = webpackConfigFactory({}, {mode: config.mode})
     const compiler = webpack(webpackConfig)
     router.use(
         webpackDevMiddleware(
