@@ -1,10 +1,13 @@
 const path = require("path")
 
+const VueLoaderPlugin = require("vue-loader/lib/plugin")
+
 module.exports = (env, argv) => {
     return {
-        mode: argv.mode || 'development',
+        mode: argv.mode,
         entry: {
-            main: "./src/app/index"
+            main: "./src/app/index",
+            vue: "./src/app/vue",
         },
         output: {
             path: path.resolve(__dirname, "public/generated"),
@@ -12,14 +15,29 @@ module.exports = (env, argv) => {
             filename: "[name].[chunkhash].min.js"
         },
         resolve: {
-            extensions: [".ts", ".js", ".json", ".scss"]
+            extensions: [".ts", ".js", ".json", ".scss", ".vue"]
         },
         module: {
             rules: [
                 {
+                    test: /\.vue$/,
+                    loader: "vue-loader"
+                },
+                {
+                    test: /\.js$/,
+                    exclude: file => /node_modules/.test(file) && !/\.vue\.js/.test(file),
+                    loader: "babel-loader",
+                    options: {
+                        presets: ["babel-preset-env"]
+                    },
+                },
+                {
                     test: /\.ts$/,
-                    use: "ts-loader",
-                    exclude: /node_modules/
+                    exclude: /node_modules/,
+                    loader: "ts-loader",
+                    options: {
+                        appendTsSuffixTo: [/\.vue$/]
+                    },
                 },
                 {
                     test: /\.scss$/,
@@ -34,8 +52,25 @@ module.exports = (env, argv) => {
                             loader: "sass-loader"
                         }
                     ]
-                }
+                },
+                {
+                    test: /\.pug$/,
+                    oneOf: [
+                        // this applies to `<template lang="pug">` in Vue components
+                        {
+                            resourceQuery: /^\?vue/,
+                            use: ["pug-plain-loader"],
+                        },
+                        // this applies to pug imports inside JavaScript
+                        {
+                            use: ["raw-loader", "pug-plain-loader"]
+                        }
+                    ]
+                },
             ]
-        }
+        },
+        plugins: [
+            new VueLoaderPlugin()
+        ],
     }
 }
