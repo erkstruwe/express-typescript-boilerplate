@@ -4,10 +4,13 @@ html(lang="en")
         meta(charset="utf-8")
         meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
         script(src="/generated/" + webpackStatsJson.assetsByChunkName.main)
+        script(src="/generated/" + webpackStatsJson.assetsByChunkName.vue async)
 
     body.container
-        h1 Hello, world!
+        h1= packageJson.name + " " + packageJson.version
         img.img-fluid(src="/sample.jpg" alt="Sample")
         h2 Vue component
         vue-demo
-        script(src="/generated/" + webpackStatsJson.assetsByChunkName.vue)
+        h2 API link
+        - const apiUrl = config.apiPath + "/test"
+        a(href=apiUrl)= apiUrl

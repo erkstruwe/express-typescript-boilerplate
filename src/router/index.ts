@@ -3,18 +3,16 @@ import * as st from "st"
 import * as webpack from "webpack"
 import * as webpackDevMiddleware from "webpack-dev-middleware"
 
-import * as webpackConfigFactory from "../webpack.config"
-import {config} from "./config"
+import * as webpackConfigFactory from "../../webpack.config"
+import {config} from "../config"
+import {apiRouter} from "./api"
 
 export const router = express.Router({
     caseSensitive: true,
     strict: true,
 })
 
-router.get("/name", (req, res) => res.send(config.name))
-router.get("/version", (req, res) => res.send(config.version))
-router.get("/health", (req, res) => res.send(""))
-
+// provide assets built by webpack to template engine
 if (config.mode === "development") {
     const webpackConfig = webpackConfigFactory({}, {mode: config.mode})
     const compiler = webpack(webpackConfig)
@@ -39,7 +37,13 @@ if (config.mode === "development") {
     })
 }
 
+// routes
 router.get("/", (req, res) => res.render("index.pug"))
+router.get("/name", (req, res) => res.send(config.name))
+router.get("/version", (req, res) => res.send(config.version))
+router.get("/health", (req, res) => res.send(""))
+
+router.use(config.apiPath, apiRouter)
 
 // Express' built-in static middleware
 // router.use(express.static("public"))

@@ -2,6 +2,14 @@
   "name": "express-typescript-boilerplate",
   "version": "2.1.1",
   "description": "A boilerplate for a Node.js server with Express framework and a client app built with Webpack. Written in Typescript. Supports containerization using Docker.",
+  "homepage": "https://github.com/erkstruwe/express-typescript-boilerplate",
+  "bugs": {
+    "url": "https://github.com/erkstruwe/express-typescript-boilerplate/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erkstruwe/express-typescript-boilerplate.git"
+  },
   "main": "src/index.ts",
   "engines": {
     "node": "^8.9.4",
@@ -24,7 +32,7 @@
     "test": "npm run lint && npm run build:server && npm run build:app",
     "preversion": "npm run lint:fix && npm test",
     "version": "git add --all",
-    "postversion": "git push origin master && npm publish"
+    "postversion": "git push origin master"
   },
   "author": "Erk Struwe <estruwe@estruwe.de>",
   "license": "SEE LICENSE IN LICENSE",
@@ -34,11 +42,12 @@
     "babel-preset-env": "^1.7.0",
     "bootstrap": "^4.1.1",
     "compression": "^1.7.2",
-    "cross-env": "^5.1.4",
+    "cors": "^2.8.4",
+    "cross-env": "^5.1.6",
     "css-loader": "^0.28.11",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
-    "helmet": "^3.12.0",
+    "helmet": "^3.12.1",
     "node-sass": "^4.9.0",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
@@ -47,20 +56,20 @@
     "st": "^1.2.2",
     "style-loader": "^0.21.0",
     "ts-loader": "^4.3.0",
-    "ts-node": "^6.0.3",
+    "ts-node": "^6.0.5",
     "typescript": "^2.8.3",
     "vue": "^2.5.16",
-    "vue-loader": "^15.0.10",
+    "vue-loader": "^15.2.0",
     "vue-template-compiler": "^2.5.16",
-    "webpack": "^4.8.1",
-    "webpack-cli": "^2.1.3",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.4",
     "webpack-dev-middleware": "^3.1.3",
     "winston": "^2.4.2"
   },
   "devDependencies": {
-    "@types/node": "^8.9.4",
+    "@types/node": "^8.10.17",
     "cross-var": "^1.1.0",
-    "nodemon": "^1.17.4",
+    "nodemon": "^1.17.5",
     "rimraf": "^2.6.2",
     "tslint": "^5.10.0"
   }
