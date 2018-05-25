@@ -14,6 +14,6 @@
 
 <style lang="scss">
     .example {
-        color: red;
+        color: hotpink;
     }
 </style>
