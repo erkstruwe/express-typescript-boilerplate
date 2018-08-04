@@ -11,24 +11,25 @@ module.exports = (env, argv) => {
         },
         output: {
             path: path.resolve(__dirname, "public/generated"),
-            publicPath: "/generated",
-            filename: "[name].[chunkhash].min.js"
+            publicPath: "/generated/",
+            filename: "[name].[contenthash].min.js",
+            chunkFilename: '[name].[contenthash].min.js',
         },
         resolve: {
-            extensions: [".ts", ".js", ".json", ".scss", ".vue"]
+            extensions: [".ts", ".js", ".json", ".scss", ".vue"],
         },
         module: {
             rules: [
                 {
                     test: /\.vue$/,
-                    loader: "vue-loader"
+                    loader: "vue-loader",
                 },
                 {
                     test: /\.js$/,
                     exclude: file => /node_modules/.test(file) && !/\.vue\.js/.test(file),
                     loader: "babel-loader",
                     options: {
-                        presets: ["babel-preset-env"]
+                        presets: ["babel-preset-env"],
                     },
                 },
                 {
@@ -36,22 +37,23 @@ module.exports = (env, argv) => {
                     exclude: /node_modules/,
                     loader: "ts-loader",
                     options: {
-                        appendTsSuffixTo: [/\.vue$/]
+                        configFile: "tsconfig.app.json",
+                        appendTsSuffixTo: [/\.vue$/],
                     },
                 },
                 {
                     test: /\.scss$/,
                     use: [
                         {
-                            loader: "style-loader"
+                            loader: "style-loader",
                         },
                         {
-                            loader: "css-loader"
+                            loader: "css-loader",
                         },
                         {
-                            loader: "sass-loader"
-                        }
-                    ]
+                            loader: "sass-loader",
+                        },
+                    ],
                 },
                 {
                     test: /\.pug$/,
@@ -63,14 +65,14 @@ module.exports = (env, argv) => {
                         },
                         // this applies to pug imports inside JavaScript
                         {
-                            use: ["raw-loader", "pug-plain-loader"]
-                        }
-                    ]
+                            use: ["raw-loader", "pug-plain-loader"],
+                        },
+                    ],
                 },
-            ]
+            ],
         },
         plugins: [
-            new VueLoaderPlugin()
+            new VueLoaderPlugin(),
         ],
     }
 }

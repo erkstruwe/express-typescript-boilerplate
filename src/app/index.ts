@@ -11,3 +11,9 @@ const consoleMessage: IConsoleMessage = {
 }
 
 console.log(consoleMessage.message, consoleMessage.data)
+
+import(/* webpackChunkName: "lodash" */ "lodash")
+    .then((lodash) => {
+        console.log(lodash.join(["Dynamic", "imports"], " "))
+    })
+    .catch(console.error)
