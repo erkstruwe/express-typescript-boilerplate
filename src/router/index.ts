@@ -22,6 +22,14 @@ if (config.mode === "development") {
             {
                 serverSideRender: true,
                 publicPath: webpackConfig.output.publicPath,
+                stats: {
+                    builtAt: false,
+                    colors: true,
+                    entrypoints: false,
+                    hash: false,
+                    modules: false,
+                    version: false,
+                },
             },
         ),
     )
@@ -30,7 +38,7 @@ if (config.mode === "development") {
         return next()
     })
 } else {
-    const webpackStatsJson = require("../webpackStats")
+    const webpackStatsJson = require("../../webpackStats")
     router.use((req, res, next) => {
         res.locals.webpackStatsJson = webpackStatsJson
         return next()
