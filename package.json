@@ -1,7 +1,7 @@
 {
   "name": "express-typescript-boilerplate",
   "version": "2.4.1",
-  "description": "A boilerplate for a Node.js server with Express framework and a client app built with Webpack. Written in Typescript. Supports containerization using Docker.",
+  "description": "A boilerplate for a Node.js server with Express framework. Written in Typescript. Supports containerization using Docker.",
   "homepage": "https://github.com/erkstruwe/express-typescript-boilerplate",
   "bugs": {
     "url": "https://github.com/erkstruwe/express-typescript-boilerplate/issues"
@@ -10,70 +10,41 @@
     "type": "git",
     "url": "https://github.com/erkstruwe/express-typescript-boilerplate.git"
   },
-  "main": "src/index.ts",
+  "main": "index.js",
   "engines": {
     "node": ">=8 <=10",
     "npm": ">=5 <=6"
   },
   "scripts": {
-    "start": "ts-node --project tsconfig.server.json src/index.ts",
+    "start": "node index.js",
     "start:prod": "cross-env NODE_ENV=production npm start",
-    "start:dev": "nodemon --watch src --ignore src/app --ignore src/views --watch package.json --watch .env --ext js,json,ts --exec \"npm start\"",
-    "lint": "npm run lint:server && npm run lint:app",
-    "lint:fix": "npm run lint:server -- --fix && npm run lint:app -- --fix",
-    "lint:server": "tslint --project tsconfig.server.json",
-    "lint:app": "tslint --project tsconfig.app.json",
-    "build:server": "tsc --project tsconfig.server.json --noEmit",
-    "build:app": "webpack --hide-modules --mode=production --profile --json > webpackStats.json",
-    "build:app:watch": "webpack --hide-modules --mode=development --watch",
-    "clean": "rimraf public/generated",
+    "start:dev": "nodemon --watch src --ignore src/views --watch package.json --watch .env --ext js,json,ts --exec \"npm start\"",
+    "lint": "tslint .",
+    "lint:fix": "npm run lint -- --fix",
+    "build": "tsc . --noEmit",
     "docker:build": "cross-var docker build -t $npm_package_name:$npm_package_version .",
     "docker:run": "cross-var docker run $npm_package_name:$npm_package_version",
-    "docker:compose-up": "docker-compose up",
-    "postinstall": "npm run build:app",
-    "test": "npm run lint && npm run build:server && npm run build:app",
-    "preversion": "npm run lint:fix && npm test",
-    "version": "git add --all",
-    "postversion": "git push origin master"
+    "test": "npm run lint && npm run build",
+    "preversion": "npm run lint && npm test",
+    "postversion": "git push origin master --tags"
   },
   "author": "Erk Struwe <estruwe@estruwe.de>",
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.7.0",
-    "bootstrap": "^4.1.1",
     "compression": "^1.7.2",
     "cors": "^2.8.4",
     "cross-env": "^5.1.6",
-    "css-loader": "^1.0.0",
-    "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "helmet": "^3.12.1",
-    "lodash": "^4.17.11",
-    "node-sass": "^4.9.3",
     "pug": "^2.0.3",
-    "pug-plain-loader": "^1.0.0",
-    "raw-loader": "^0.5.1",
-    "sass-loader": "^7.0.1",
-    "st": "^1.2.2",
-    "style-loader": "^0.23.0",
-    "ts-loader": "^5.2.0",
     "ts-node": "^7.0.1",
     "typescript": "^3.0.3",
-    "vue": "^2.5.16",
-    "vue-loader": "^15.4.2",
-    "vue-template-compiler": "^2.5.16",
-    "webpack": "^4.20.0",
-    "webpack-cli": "^3.1.1",
-    "webpack-dev-middleware": "^3.4.0",
     "winston": "^3.1.0"
   },
   "devDependencies": {
     "@types/node": "^10.11.0",
     "cross-var": "^1.1.0",
     "nodemon": "^1.18.4",
-    "rimraf": "^2.6.2",
     "tslint": "^5.11.0"
   }
 }

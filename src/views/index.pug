@@ -3,14 +3,14 @@ html(lang="en")
     head
         meta(charset="utf-8")
         meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
-        script(src="/generated/" + webpackStatsJson.assetsByChunkName.main)
-        script(src="/generated/" + webpackStatsJson.assetsByChunkName.vue async)
 
-    body.container
-        h1= packageJson.name + " " + packageJson.version
-        img.img-fluid(src="/sample.jpg" alt="Sample")
-        h2 Vue component
-        vue-demo
-        h2 API link
-        - const apiUrl = config.apiPath + "/test"
-        a(href=apiUrl)= apiUrl
+    body
+        h1= config.name + " " + config.version
+        h2 API links
+        p
+            - const apiUrl = config.apiPath + "/test"
+            a(href=apiUrl)= apiUrl
+            br
+            a(href=apiUrl + "?error")= apiUrl + "?error"
+            br
+            a(href=apiUrl + "?customError")= apiUrl + "?customError"

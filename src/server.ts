@@ -13,10 +13,9 @@ server.set("trust proxy", true)
 server.set("case sensitive routing", true)
 server.set("strict routing", true)
 
-server.locals.packageJson = require("../package.json")
 server.locals.config = config
 
-server.use(compression())
 server.use(helmet())
+server.use(compression())
 
 server.use(router)

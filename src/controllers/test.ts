@@ -1,14 +1,14 @@
 import {CustomError} from "../CustomError"
 
 export function testController(req, res, next) {
-    if (req.query.error) {
-        return next(new CustomError(500, "The error parameter was used."))
+    if (typeof req.query.error !== "undefined") {
+        return next(new Error("The error parameter was used."))
     }
-
-    return res.json({
-        status: "ok",
-        data: {
-            some: "thing",
-        },
+    if (typeof req.query.customError !== "undefined") {
+        return next(new CustomError(400, "The customError parameter was used."))
+    }
+    res.json({
+        something: true,
     })
+    return next()
 }
