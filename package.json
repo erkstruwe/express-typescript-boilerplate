@@ -1,6 +1,6 @@
 {
   "name": "express-typescript-boilerplate",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "A boilerplate for a Node.js server with Express framework and a client app built with Webpack. Written in Typescript. Supports containerization using Docker.",
   "homepage": "https://github.com/erkstruwe/express-typescript-boilerplate",
   "bugs": {
