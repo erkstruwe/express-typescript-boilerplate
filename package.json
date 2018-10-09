@@ -18,7 +18,9 @@
   "scripts": {
     "start": "node index.js",
     "start:prod": "cross-env NODE_ENV=production npm start",
-    "start:dev": "nodemon --watch src --ignore src/views --watch package.json --watch .env --ext js,json,ts --exec \"npm start\"",
+    "start:dev": "concurrently --prefix name --names mongoDb,server \"npm run start:dev:mongoDb\" \"npm run start:dev:server\"",
+    "start:dev:mongoDb": "docker-compose up",
+    "start:dev:server": "nodemon --watch src --ignore src/views --watch package.json --watch .env --ext js,json,ts --exec \"npm start\"",
     "lint": "tslint .",
     "lint:fix": "npm run lint -- --fix",
     "build": "tsc . --noEmit",
@@ -36,13 +38,16 @@
     "cross-env": "^5.1.6",
     "express": "^4.16.3",
     "helmet": "^3.12.1",
+    "mongoose": "^5.3.2",
     "pug": "^2.0.3",
     "ts-node": "^7.0.1",
-    "typescript": "^3.0.3",
+    "typescript": "^3.1.1",
     "winston": "^3.1.0"
   },
   "devDependencies": {
-    "@types/node": "^10.11.0",
+    "@types/mongoose": "^5.2.18",
+    "@types/node": "^10.11.5",
+    "concurrently": "^4.0.1",
     "cross-var": "^1.1.0",
     "nodemon": "^1.18.4",
     "tslint": "^5.11.0"

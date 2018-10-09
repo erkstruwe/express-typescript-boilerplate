@@ -19,3 +19,5 @@ server.use(helmet())
 server.use(compression())
 
 server.use(router)
+
+require("./mongoDb")
