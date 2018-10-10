@@ -21,13 +21,14 @@
     "start:dev": "concurrently --prefix name --names mongoDb,server \"npm run start:dev:mongoDb\" \"npm run start:dev:server\"",
     "start:dev:mongoDb": "docker-compose up",
     "start:dev:server": "nodemon --watch src --ignore src/views --watch package.json --watch .env --ext js,json,ts --exec \"npm start\"",
-    "lint": "tslint .",
+    "lint": "tslint --project .",
     "lint:fix": "npm run lint -- --fix",
-    "build": "tsc . --noEmit",
+    "build": "tsc --project . --noEmit",
+    "unit": "ts-node node_modules/jasmine/bin/jasmine.js JASMINE_CONFIG_PATH=jasmine.json",
     "docker:build": "cross-var docker build -t $npm_package_name:$npm_package_version .",
     "docker:run": "cross-var docker run $npm_package_name:$npm_package_version",
-    "test": "npm run lint && npm run build",
-    "preversion": "npm run lint && npm test",
+    "test": "npm run lint && npm run build && npm run unit",
+    "preversion": "npm test",
     "postversion": "git push origin master --tags"
   },
   "author": "Erk Struwe <estruwe@estruwe.de>",
@@ -45,10 +46,12 @@
     "winston": "^3.1.0"
   },
   "devDependencies": {
+    "@types/jasmine": "^2.8.9",
     "@types/mongoose": "^5.2.18",
     "@types/node": "^10.11.5",
     "concurrently": "^4.0.1",
     "cross-var": "^1.1.0",
+    "jasmine": "^3.2.0",
     "nodemon": "^1.18.4",
     "tslint": "^5.11.0"
   }

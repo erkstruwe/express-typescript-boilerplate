@@ -20,7 +20,7 @@ apiRouter.use((req, res, next) => {
     res.json = (data: any, message: string | null = null, status: string = "ok") => {
         const now = new Date()
         const duration = now.valueOf() - res.locals.time.valueOf()
-        logger.info("request", {statusCode: res.statusCode, url: req.url, duration,})
+        logger.info("request", {statusCode: res.statusCode, url: req.url, duration})
 
         return originalJson({
             status,
