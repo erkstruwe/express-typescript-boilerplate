@@ -7,8 +7,7 @@ export function testController(req, res, next) {
     if (typeof req.query.customError !== "undefined") {
         return next(new CustomError(400, "The customError parameter was used."))
     }
-    res.json({
+    return res.json({
         something: true,
     })
-    return next()
 }

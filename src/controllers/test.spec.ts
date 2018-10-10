@@ -7,10 +7,9 @@ describe("test controller", () => {
             this.res = jasmine.createSpyObj(["json"])
             this.next = jasmine.createSpy()
         })
-        it("should send something and continue", function() {
+        it("should send something", function() {
             testController(this.req, this.res, this.next)
             expect(this.res.json).toHaveBeenCalledWith({something: true})
-            expect(this.next).toHaveBeenCalledWith()
         })
         it("should continue with error if error parameter is set", function() {
             this.req.query.error = true
